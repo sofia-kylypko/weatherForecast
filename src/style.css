@@ -1,0 +1,83 @@
+.container {
+    max-width: 500px;
+    background-image: url("../images/sun.jpg");
+    background-repeat: no-repeat;
+    background-position-x: -120px;
+    background-size:cover;
+    margin: 30px auto;
+    border-radius: 20px;
+    padding: 20px 20px;
+    color: white;
+}
+.row input {
+    border: none;
+    line-height: 40px;
+    border-radius: 20px;
+    padding-left: 10px;
+    background-color: rgba(216, 216, 232, 0.887);
+    backdrop-filter: blur(15px);
+}
+.row button {
+    margin-left:7%;
+    background-color: rgb(176, 195, 254) ;
+    border-color:rgb(176, 195, 254) ;
+    color: rgb(65, 63, 63);
+    transition: all 200ms ease-in-out;
+}
+.row button:hover {
+    background-color: transparent;
+    border-color: white;
+}
+.first {
+    margin: 0px 10px;
+    display: flex;
+    justify-content: space-between;
+}
+.current {
+    text-align: center;
+    margin: 40px 0;
+}
+.current .city {
+    font-weight: bolder;
+    font-size: 40px;
+}
+.current h1 {
+    font-size: large;
+}
+.current h1 #currentTemp {
+    font-size: xx-large;
+}
+.current h1 #celciumMode, .current h1 #fahrenheitMode {
+    color: rgb(228, 219, 219);
+} 
+.current h4 {
+    font-size: larger;
+}
+.further .row img {
+    height: 30px !important;
+    width:30px !important;
+    margin-top: -3px;
+}
+.further .row {
+    margin: 20px;
+    background-color: rgba(220, 220, 225, 0.283);
+    backdrop-filter: blur(15px);
+    border: 2px solid rgba(201, 201, 210, 0.2);
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    color: black;
+}
+.further .second {
+    padding: 8px 15px;
+    font-size: large;
+}
+
+.activeTempMode{
+    font-size: xx-large;
+    color: white !important;
+}
+.btn-success {
+    background-color: rgb(169, 255, 161) !important;
+    border-color:rgb(169, 255, 161) !important ;
+}

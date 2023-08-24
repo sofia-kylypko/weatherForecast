@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie-edge" />
+    <title>Weather Forecast</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="src/style.css">
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+  </head>
+  <body>
+        <div class="container">
+            <form class="row first" id="submitForm">
+                <input placeholder="Enter a city to search..." id="searchInput"></input>
+                <button class=" btn btn-info">Search</button>
+                <button type="button" class="btn btn-success" id="btnCurrentPosition">Current</button>
+            </form>
+            <div class="current">
+                <h1 class="city" id="searchedCity">cityname</h1>
+                <h4><em id="weatherState">weather state</em></h4>
+                <h1><span id="currentTemp">22</span><span id="celciumMode" class="activeTempMode">°C</span>/<span id="fahrenheitMode">°F</span></h1>
+                <h4>Humidity: <em id="humidityInfo">data</em>%  Wind: <em id="windInfo">data</em>km/h</h4>
+                <h4><em id="currentDate">Today day and time</em></h4>
+            </div>
+            <section class="further">
+                <div class="row second">
+                    <span>Friday</span>
+                    <span>
+                        <span class="toChange">22</span>°C
+                        <img src="https://img.icons8.com/?size=512&id=15352&format=png" />
+                    </span>
+                   </div>
+               <div class="row second">
+                <span>Friday</span>
+                <span>
+                    <span class="toChange">22</span>°C
+                    <img src="https://img.icons8.com/?size=512&id=15352&format=png" />
+                </span>
+               </div>
+               <div class="row second">
+                <span>Friday</span>
+                <span>
+                    <span class="toChange">22</span>°C
+                    <img src="https://img.icons8.com/?size=512&id=15352&format=png" />
+                </span>
+               </div>
+               <div class="row second">
+                <span>Friday</span>
+                <span>
+                    <span class="toChange">22</span>°C
+                    <img src="https://img.icons8.com/?size=512&id=15352&format=png" />
+                </span>
+               </div>
+               <div class="row second">
+                <span>Friday</span>
+                <span>
+                    <span class="toChange">22</span>°C
+                    <img src="https://img.icons8.com/?size=512&id=15352&format=png" />
+                </span>
+               </div>
+
+            </section>
+            
+        </div>
+        <script src="src/app.js"></script>
+  </body>
+</html>
