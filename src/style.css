@@ -26,7 +26,6 @@ h4 {
     backdrop-filter: blur(15px);
 }
 .row button {
-    margin-left:7%;
     background-color: rgb(176, 195, 254) ;
     border-color:rgb(176, 195, 254) ;
     color: rgb(65, 63, 63);
