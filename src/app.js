@@ -107,7 +107,7 @@ function formatDate(time){
         minutes=`0${minutes}`;
     }
     let todayData=`${weekDays[today.getDay()-1]} ${today.getHours()}:${minutes}`;
-    fillFollowingDays(today.getDay()-1);
+    fillFollowingDays();
     return todayData;
 }
 function changingBackground(state){
@@ -125,7 +125,8 @@ function changingBackground(state){
     }
     page.style.backgroundImage=`url(${images[id]})`;
 }
-function fillFollowingDays(todayDay){
+function fillFollowingDays(){
+    let todayDay=new Date().getDay()-1;
     let weekDays=["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
     followingDaysFilds.forEach(item=>{
         todayDay+=1;
