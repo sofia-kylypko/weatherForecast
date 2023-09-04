@@ -10,6 +10,7 @@ let windInfo=document.querySelector("#windInfo");
 let btnCurrentPosition=document.querySelector("#btnCurrentPosition");
 let stateIcons=document.querySelector("#stateIcons");
 let page=document.querySelector(".container");
+let followingDaysFilds=document.querySelectorAll("#followingDays");
 
 // info on page
 let cityname="New York";
@@ -20,8 +21,10 @@ stateIcons.setAttribute("src",`https://openweathermap.org/img/wn/${"10d"}@2x.png
 let apiKey = "2b4da377910efe4a9072eaa420c98eec";
 let apiLink = `https://api.openweathermap.org/data/2.5/weather?q=${cityname}&units=metric&appid=${apiKey}`;
 
-//
+//working set
 axios.get(apiLink).then(fillPage);
+console.log(followingDaysFilds);
+
 
 // event listeners
 searchCity.addEventListener("submit", changeCity);
@@ -104,6 +107,7 @@ function formatDate(time){
         minutes=`0${minutes}`;
     }
     let todayData=`${weekDays[today.getDay()-1]} ${today.getHours()}:${minutes}`;
+    fillFollowingDays(today.getDay()-1);
     return todayData;
 }
 function changingBackground(state){
@@ -120,4 +124,11 @@ function changingBackground(state){
         id=0;
     }
     page.style.backgroundImage=`url(${images[id]})`;
+}
+function fillFollowingDays(todayDay){
+    let weekDays=["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
+    followingDaysFilds.forEach(item=>{
+        todayDay+=1;
+        item.innerHTML=weekDays[todayDay];
+    });
 }
