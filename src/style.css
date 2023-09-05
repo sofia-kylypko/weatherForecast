@@ -24,16 +24,18 @@ h4 {
     padding-left: 10px;
     background-color: rgba(216, 216, 232, 0.887);
     backdrop-filter: blur(15px);
+    width: 60%;
 }
 .row button {
-    background-color: rgb(176, 195, 254) ;
-    border-color:rgb(176, 195, 254) ;
-    color: rgb(65, 63, 63);
+    background-color: rgba(220, 220, 225, 0.283) !important;
+    backdrop-filter: blur(15px) !important;
+    border: 2px solid rgba(201, 201, 210, 0.2) !important;
+    color: white;
     transition: all 200ms ease-in-out;
 }
 .row button:hover {
-    background-color: transparent;
-    border-color: white;
+    background-color: rgb(176, 195, 254) !important;
+    border-color:rgb(176, 195, 254) !important;
 }
 .first {
     margin: 0px 10px;
@@ -84,9 +86,16 @@ h4 {
     color: white !important;
 }
 .btn-success {
-    background-color: rgb(169, 255, 161) !important;
-    border-color:rgb(169, 255, 161) !important ;
+    background-color: transparent !important;
+    border: none;
 }
 footer {
     text-align: center;
+}
+#btnCurrentPosition {
+    background-color: transparent !important;
+    border: none !important;padding: 0;
+}
+#btnCurrentPosition img {
+    height: 30px;
 }
