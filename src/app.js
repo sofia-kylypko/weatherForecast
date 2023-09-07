@@ -11,11 +11,13 @@ let btnCurrentPosition=document.querySelector("#btnCurrentPosition");
 let stateIcons=document.querySelector("#stateIcons");
 let page=document.querySelector(".container");
 let followingDaysFilds=document.querySelectorAll("#followingDays");
-
+let sectionForNextDays=document.querySelector(".further");
+//
+let weekDays=["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
 // info on page
 let cityname="New York";
 //setting the icon
-stateIcons.setAttribute("src",`https://openweathermap.org/img/wn/${"10d"}@2x.png`);
+// stateIcons.setAttribute("src",`https://openweathermap.org/img/wn/${"10d"}@2x.png`);
 
 //api info
 let apiKey = "2b4da377910efe4a9072eaa420c98eec";
@@ -23,7 +25,7 @@ let apiLink = `https://api.openweathermap.org/data/2.5/weather?q=${cityname}&uni
 
 //working set
 axios.get(apiLink).then(fillPage);
-console.log(followingDaysFilds);
+
 
 
 // event listeners
@@ -101,13 +103,14 @@ function tempToFahrenheit(event){
 function formatDate(time){
     let today=new Date(time);
     console.log(today);
-    let weekDays=["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
+    
     let minutes=today.getMinutes();
     if(minutes.toString().length<2){
         minutes=`0${minutes}`;
     }
     let todayData=`${weekDays[today.getDay()-1]} ${today.getHours()}:${minutes}`;
-    fillFollowingDays();
+    // fillFollowingDays();
+    addingNextDaysForecast(today.getDay()-1);
     return todayData;
 }
 function changingBackground(state){
@@ -125,11 +128,39 @@ function changingBackground(state){
     }
     page.style.backgroundImage=`url(${images[id]})`;
 }
-function fillFollowingDays(){
-    let todayDay=new Date().getDay()-1;
-    let weekDays=["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
-    followingDaysFilds.forEach(item=>{
-        todayDay+=1;
-        item.innerHTML=weekDays[todayDay];
-    });
+function addingNextDaysForecast(today){
+    let daysToFillNames=[];
+    while(daysToFillNames.length!=5){
+        today+=1;
+        if(today>6){
+            today-=7;
+        }
+        daysToFillNames.push(weekDays[today]);
+    }
+    console.log(daysToFillNames);
+    sectionForNextDays.innerHTML=``;
+    daysToFillNames.forEach(day=>{
+        let dayElement=`
+            <div class="row second">
+                <span id="followingDays">${day}</span>
+                <span>
+                    <span class="dayTemp">22</span>/<span id="nightTemp">22</span>°C
+                    <img id="stateIcons" src="https://img.icons8.com/?size=512&id=15352&format=png" />
+                </span>
+            </div>`
+        ;
+        sectionForNextDays.innerHTML+=dayElement;
+    })
+
 }
+// function fillFollowingDays(){
+//     let todayDay=new Date().getDay()-1;
+//     let weekDays=["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
+//     followingDaysFilds.forEach(item=>{
+//         todayDay+=1;
+//         if(todayDay>6){
+//             todayDay=0;
+//         }
+//         item.innerHTML=weekDays[todayDay];
+//     });
+// }
