@@ -145,7 +145,7 @@ function addingNextDaysForecast(response){
                 <span id="followingDays">${weekDays[newDate]}</span>
                 <span>
                     <span class="dayTemp">${Math.round(max)}</span>/<span id="nightTemp">${Math.round(min)}</span>°C
-                    <img id="stateIcons" src="http://openweathermap.org/img/wn/${icon}@2x.png" />
+                    <img id="stateIcons" src="https://openweathermap.org/img/wn/${icon}@2x.png" />
                 </span>
             </div>`
         ;
