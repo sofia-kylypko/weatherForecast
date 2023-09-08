@@ -14,6 +14,7 @@ let followingDaysFilds=document.querySelectorAll("#followingDays");
 let sectionForNextDays=document.querySelector(".further");
 //
 let weekDays=["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
+let todayIndex;
 // info on page
 let cityname="New York";
 //setting the icon
@@ -42,7 +43,6 @@ function getUserPosition(position){
     axios.get(placeApiLink).then(fillPage);
 }
 function fillPage(response){
-    console.log(response);
     const { data: {
         main: {
             temp,
@@ -55,7 +55,8 @@ function fillPage(response){
         ],
         wind: {
             speed
-        }
+        },
+        coord
     }} = response;
     cityInfoOnPage.innerHTML=cityname;
     tempCurrValue.innerHTML=Math.round(temp);
@@ -71,7 +72,7 @@ function fillPage(response){
         fahrenheitFormat.classList.remove("activeTempMode");
     }
     
-    
+    forecastForNextDays(coord);
 }
 function changeCity(event){
     event.preventDefault();
@@ -108,9 +109,10 @@ function formatDate(time){
     if(minutes.toString().length<2){
         minutes=`0${minutes}`;
     }
-    let todayData=`${weekDays[today.getDay()-1]} ${today.getHours()}:${minutes}`;
+    todayIndex=today.getDay()-1;
+    let todayData=`${weekDays[todayIndex]} ${today.getHours()}:${minutes}`;
     // fillFollowingDays();
-    addingNextDaysForecast(today.getDay()-1);
+    // addingNextDaysForecast();
     return todayData;
 }
 function changingBackground(state){
@@ -128,30 +130,43 @@ function changingBackground(state){
     }
     page.style.backgroundImage=`url(${images[id]})`;
 }
-function addingNextDaysForecast(today){
-    let daysToFillNames=[];
-    while(daysToFillNames.length!=5){
-        today+=1;
-        if(today>6){
-            today-=7;
-        }
-        daysToFillNames.push(weekDays[today]);
-    }
-    console.log(daysToFillNames);
-    sectionForNextDays.innerHTML=``;
-    daysToFillNames.forEach(day=>{
+function addingNextDaysForecast(response){
+    sectionForNextDays.innerHTML='';
+    console.log(response);
+    //display next number of days
+    for(let i=0;i<5;i++){
+        const {
+            temp:{
+                max,
+                min
+            },
+            weather:[
+                {icon}
+            ],
+            dt
+        }=response.data.daily[i];
+        let newDate=new Date(dt*1000).getDay();
         let dayElement=`
             <div class="row second">
-                <span id="followingDays">${day}</span>
+                <span id="followingDays">${weekDays[newDate]}</span>
                 <span>
-                    <span class="dayTemp">22</span>/<span id="nightTemp">22</span>°C
-                    <img id="stateIcons" src="https://img.icons8.com/?size=512&id=15352&format=png" />
+                    <span class="dayTemp">${Math.round(max)}</span>/<span id="nightTemp">${Math.round(min)}</span>°C
+                    <img id="stateIcons" src="http://openweathermap.org/img/wn/${icon}@2x.png" />
                 </span>
             </div>`
         ;
         sectionForNextDays.innerHTML+=dayElement;
-    })
+    }
 
+}
+function forecastForNextDays(coords){
+    const {
+        lon,
+        lat
+    }=coords
+    console.log(coords);
+    let nextApiLink=`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=7746bdeabca928cfedcad71e52fd9d66&units=metric`;
+    axios.get(nextApiLink).then(addingNextDaysForecast);
 }
 // function fillFollowingDays(){
 //     let todayDay=new Date().getDay()-1;

@@ -99,3 +99,6 @@ footer {
 #btnCurrentPosition img {
     height: 30px;
 }
+#nightTemp{
+    color: rgb(77, 77, 91);
+}
