@@ -17,8 +17,6 @@ let weekDays=["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sun
 let todayIndex;
 // info on page
 let cityname="New York";
-//setting the icon
-// stateIcons.setAttribute("src",`https://openweathermap.org/img/wn/${"10d"}@2x.png`);
 
 //api info
 let apiKey = "2b4da377910efe4a9072eaa420c98eec";
@@ -26,8 +24,6 @@ let apiLink = `https://api.openweathermap.org/data/2.5/weather?q=${cityname}&uni
 
 //working set
 axios.get(apiLink).then(fillPage);
-
-
 
 // event listeners
 searchCity.addEventListener("submit", changeCity);
@@ -111,8 +107,6 @@ function formatDate(time){
     }
     todayIndex=today.getDay()-1;
     let todayData=`${weekDays[todayIndex]} ${today.getHours()}:${minutes}`;
-    // fillFollowingDays();
-    // addingNextDaysForecast();
     return todayData;
 }
 function changingBackground(state){
@@ -168,14 +162,3 @@ function forecastForNextDays(coords){
     let nextApiLink=`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=7746bdeabca928cfedcad71e52fd9d66&units=metric`;
     axios.get(nextApiLink).then(addingNextDaysForecast);
 }
-// function fillFollowingDays(){
-//     let todayDay=new Date().getDay()-1;
-//     let weekDays=["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
-//     followingDaysFilds.forEach(item=>{
-//         todayDay+=1;
-//         if(todayDay>6){
-//             todayDay=0;
-//         }
-//         item.innerHTML=weekDays[todayDay];
-//     });
-// }
